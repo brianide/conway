@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 import ws.temple.util.Utils;
 
 public class Rulestring implements Rules {
-
-	private static final Pattern RULESTRING_PATTERN = Pattern.compile("(?:b(\\d*)/?s(\\d*)|(\\d*)/(\\d*))", Pattern.CASE_INSENSITIVE);
+	
+	private static final Pattern RULESTRING_PATTERN = Pattern.compile("^(?:b(\\d*)/?s(\\d*)|(\\d*)/(\\d*))$", Pattern.CASE_INSENSITIVE);
 
 	private final int[] birth;
 	private final int[] survival;
@@ -32,6 +32,7 @@ public class Rulestring implements Rules {
 	 * @return
 	 */
 	private static int[] getDigitArray(String str) {
+		// TODO Throw out repeated or otherwise invalid digits (with a warning?)
 		final int[] digits = new int[str.length()];
 		for(int i = 0; i < digits.length; i++) {
 			digits[i] = Character.getNumericValue(str.charAt(i));
